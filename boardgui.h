@@ -2,6 +2,7 @@
 #define BOARDGUI_H
 
 #include <QTableWidget>
+#include <QResizeEvent>
 
 typedef enum {White, Black, WhiteDam, BlackDam, Marker} GameItem;
 
@@ -22,10 +23,13 @@ class BoardGui : public QTableWidget
     Q_OBJECT
 protected:
     int N;
-    bool acitve(int r, int c) const {return ((r, c) % 2) != 0;}
+    bool acitve_site(int r, int c) const {return ((r + c) % 2) != 0;}
+    void resizeEvent(QResizeEvent *event);
 public:
     explicit BoardGui(QWidget *parent = 0);
     void init(int N = 8);
+
+
 signals:
 
 public slots:
